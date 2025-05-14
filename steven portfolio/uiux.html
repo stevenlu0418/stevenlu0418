@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design - Steven Lu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dream: {
+                            brown: '#453C39',
+                            blue: '#B2DAE7',
+                            gray: '#CAC5BC',
+                            purple: '#6B75B4',
+                            pink: '#FDE2FC',
+                            text: '#2D2D2D'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #CAC5BC 0%, #97A3D6 50%, #FDE2FC 100%);
+            min-height: 100vh;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 
+                0 8px 32px 0 rgba(133, 122, 117, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+        .dream-border {
+            position: relative;
+        }
+        .dream-border::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #B2DAE7, #97A3D6, #FDE2FC);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        .project-image {
+            transition: transform 0.3s ease;
+        }
+        .project-image:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- 导航栏 -->
+        <nav class="glass-effect dream-border rounded-xl mb-8 p-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-dream-text text-2xl font-bold tracking-wider">STEVEN LU</a>
+                <!-- 移动端汉堡菜单按钮 -->
+                <button id="menuButton" class="md:hidden text-dream-text hover:text-dream-purple transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="hidden md:flex space-x-12">
+                    <a href="index.html" class="text-dream-text hover:text-dream-purple transition-colors">Hem</a>
+                    <a href="om-mig.html" class="text-dream-text hover:text-dream-purple transition-colors">Om mig</a>
+                    <a href="projekt.html" class="text-dream-text hover:text-dream-purple transition-colors">Projekt</a>
+                    <a href="kompetenser.html" class="text-dream-text hover:text-dream-purple transition-colors">Kompetenser</a>
+                    <a href="kontakt.html" class="text-dream-text hover:text-dream-purple transition-colors">Kontakt</a>
+                </div>
+            </div>
+            <!-- 移动端菜单 -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-4">
+                <a href="index.html" class="block text-dream-text hover:text-dream-purple transition-colors">Hem</a>
+                <a href="om-mig.html" class="block text-dream-text hover:text-dream-purple transition-colors">Om mig</a>
+                <a href="projekt.html" class="block text-dream-text hover:text-dream-purple transition-colors">Projekt</a>
+                <a href="kompetenser.html" class="block text-dream-text hover:text-dream-purple transition-colors">Kompetenser</a>
+                <a href="kontakt.html" class="block text-dream-text hover:text-dream-purple transition-colors">Kontakt</a>
+            </div>
+        </nav>
+
+        <!-- 添加 JavaScript -->
+        <script>
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        </script>
+
+        <!-- 项目展示区域 -->
+        <section class="glass-effect dream-border rounded-2xl p-6 md:p-12 mb-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- 标题区域 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-dream-text mb-4">UI/UX Design</h1>
+                    <div class="w-24 h-1 bg-dream-purple mx-auto rounded-full"></div>
+                </div>
+
+                <!-- 项目内容区域 -->
+                <div class="space-y-20">
+                    <!-- Project Introduction -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Projekt introduktion</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Tillsammans med mitt team utvecklade jag en interaktiv skärmprototyp för Skokloster Museum. Prototypen var designad för att placeras utanför museet, vilket ger besökare med funktionsnedsättning möjlighet att utforska varje våning genom att trycka på skärmen.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Research -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Research</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Vi besökte Skokloster Museum för att intervjua personal och besökare, och samlade värdefull data för att informera våra designbeslut.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Empathy Mapping -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Empathy Mapping</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Efter besöket på Skokloster Castle analyserade vi intervjuerna med hjälp av en empathy map och fann att besökarna saknade medvetenhet om webbplatsen och digitala resurser, inte beaktade utmaningarna för funktionshindrade individer, och betonade behovet av inkludering och mer information.
+                            </p>
+                        </div>
+                        <div class="glass-effect dream-border rounded-xl p-2">
+                            <img src="./images/empathy-map.jpg" alt="Empathy Map" class="w-full rounded-lg project-image">
+                            <p class="text-dream-text text-sm mt-2 text-center font-medium">Empathy map analys</p>
+                        </div>
+                    </div>
+
+                    <!-- Customer Journey -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Customer Journey</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Genom customer journey-analys fick vi insikter i användarupplevelser och behov. En viktig upptäckt var att medan besökare inte kunde få fysisk tillgång till de övre utställningarna, föredrog de att se dem på plats vid slottet framför att göra det hemifrån.
+                            </p>
+                        </div>
+                        <div class="glass-effect dream-border rounded-xl p-2">
+                            <img src="./images/customer-journey.jpg" alt="Customer Journey Map" class="w-full rounded-lg project-image">
+                            <p class="text-dream-text text-sm mt-2 text-center font-medium">Customer journey analys</p>
+                        </div>
+                    </div>
+
+                    <!-- Personas -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Personas</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Gruppen skapade personas från empathy map, inklusive Yngve som representerar den primära målgruppen med rörelsehinder, och Elina, en student som värdesätter interaktiva upplevelser.
+                            </p>
+                        </div>
+                        <div class="glass-effect dream-border rounded-xl p-2">
+                            <img src="./images/personas.jpg" alt="User Personas" class="w-full rounded-lg project-image">
+                            <p class="text-dream-text text-sm mt-2 text-center font-medium">Personas utveckling</p>
+                        </div>
+                    </div>
+
+                    <!-- Lo-Fi Prototype -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Lo-fi prototype</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Efter omfattande forskningsaktiviteter skapade vi en low-fidelity prototyp för att testa grundläggande koncept och flöden.
+                            </p>
+                        </div>
+                        <div class="glass-effect dream-border rounded-xl p-2">
+                            <img src="./images/lofi-prototype.jpg" alt="Lo-Fi Prototype" class="w-full rounded-lg project-image">
+                            <p class="text-dream-text text-sm mt-2 text-center font-medium">Lo-fi prototyp utveckling</p>
+                        </div>
+                    </div>
+
+                    <!-- Hi-Fi Prototype -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Hi-fi prototype</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Efter testning utvecklade jag en high-fidelity prototyp som implementerade alla insikter och förbättringar från tidigare faser.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/hifi-1.jpg" alt="Hi-Fi Design 1" class="w-full rounded-lg project-image">
+                            </div>
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/hifi-2.jpg" alt="Hi-Fi Design 2" class="w-full rounded-lg project-image">
+                            </div>
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/hifi-3.jpg" alt="Hi-Fi Design 3" class="w-full rounded-lg project-image">
+                            </div>
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/hifi-4.jpg" alt="Hi-Fi Design 4" class="w-full rounded-lg project-image">
+                            </div>
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/hifi-5.jpg" alt="Hi-Fi Design 5" class="w-full rounded-lg project-image">
+                            </div>
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/hifi-6.jpg" alt="Hi-Fi Design 6" class="w-full rounded-lg project-image">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prototype Link -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto text-center">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Link till hi-fi prototype</h2>
+                            <a href="https://www.figma.com/proto/SXeJp0kCPpRUMu0om1fofi?node-id=0:1" 
+                               class="text-dream-purple hover:text-dream-blue transition-colors text-lg break-all">
+                                https://www.figma.com/proto/SXeJp0kCPpRUMu0om1fofi?node-id=0:1
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] opacity-30">
+        <div class="absolute top-[10%] left-[5%] w-32 h-32 bg-dream-blue rounded-full blur-3xl"></div>
+        <div class="absolute top-[40%] right-[10%] w-40 h-40 bg-dream-pink rounded-full blur-3xl"></div>
+        <div class="absolute bottom-[20%] left-[15%] w-36 h-36 bg-dream-purple rounded-full blur-3xl"></div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webbutveckling - Steven Lu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dream: {
+                            brown: '#453C39',
+                            blue: '#B2DAE7',
+                            gray: '#CAC5BC',
+                            purple: '#6B75B4',
+                            pink: '#FDE2FC',
+                            text: '#2D2D2D'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #CAC5BC 0%, #97A3D6 50%, #FDE2FC 100%);
+            min-height: 100vh;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 
+                0 8px 32px 0 rgba(133, 122, 117, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+        .dream-border {
+            position: relative;
+        }
+        .dream-border::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #B2DAE7, #97A3D6, #FDE2FC);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        .project-image {
+            transition: transform 0.3s ease;
+        }
+        .project-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 移动端样式 */
+        @media (max-width: 767px) {
+            .desktop-menu {
+                display: none;
+            }
+            .mobile-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(135deg, rgba(202, 197, 188, 0.95) 0%, rgba(151, 163, 214, 0.95) 50%, rgba(253, 226, 252, 0.95) 100%);
+                backdrop-filter: blur(10px);
+                z-index: 50;
+            }
+            .mobile-menu.active {
+                display: flex;
+            }
+            .mobile-nav {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 1rem;
+                z-index: 40;
+            }
+            #menuButton {
+                position: absolute;
+                right: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .mobile-nav, .mobile-menu, #menuButton {
+                display: none !important;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeButton = document.getElementById('closeMenu');
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', function() {
+                    mobileMenu.classList.add('active');
+                });
+            }
+
+            if (closeButton && mobileMenu) {
+                closeButton.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- 导航栏 -->
+        <nav class="glass-effect dream-border rounded-xl mb-8 p-4">
+            <div class="flex justify-between items-center relative">
+                <a href="index.html" class="text-dream-text text-2xl font-bold tracking-wider">STEVEN LU</a>
+                <div class="desktop-menu hidden md:flex space-x-12">
+                    <a href="index.html" class="text-dream-text hover:text-dream-purple transition-colors">Hem</a>
+                    <a href="om-mig.html" class="text-dream-text hover:text-dream-purple transition-colors">Om mig</a>
+                    <a href="projekt.html" class="text-dream-text hover:text-dream-purple transition-colors">Projekt</a>
+                    <a href="kompetenser.html" class="text-dream-text hover:text-dream-purple transition-colors">Kompetenser</a>
+                    <a href="kontakt.html" class="text-dream-text hover:text-dream-purple transition-colors">Kontakt</a>
+                </div>
+                <button id="menuButton" class="md:hidden text-dream-text hover:text-dream-purple">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- 项目展示区域 -->
+        <section class="glass-effect dream-border rounded-2xl p-6 md:p-12 mb-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- 标题区域 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-dream-text mb-4">Webbutveckling</h1>
+                    <div class="w-24 h-1 bg-dream-purple mx-auto rounded-full"></div>
+                </div>
+                
+                <!-- 项目内容区域 -->
+                <div class="space-y-20">
+                    <!-- Skinroller项目 -->
+                    <div class="space-y-12">
+                        <!-- 项目标题和描述 -->
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">TikTok Landningssida för Skinroller</h2>
+                            <div class="space-y-4 text-dream-text text-lg leading-relaxed">
+                                <p>
+                                    Under min praktik på Skinroller ansvarade jag för att designa och utveckla en landningssida specifikt riktad till besökare från TikTok-annonser. Mitt arbete började med att skapa flera designprototyper i Figma för både desktop och mobil, där jag tog hänsyn till användarbeteenden och konverteringsoptimering.
+                                </p>
+                                <p>
+                                    Efter feedback från handledare implementerade jag sidan i företagets backend med fokus på mobilanpassning, tydliga CTA-knappar och visuell kommunikation. Sidan var utformad för att framhäva Skinrollers mest populära produkter och förbättra köpupplevelsen för TikTok-användare.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 图片展示区域 -->
+                        <div class="grid md:grid-cols-2 gap-8 items-start max-w-4xl mx-auto">
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/skinroller-figma.jpg" alt="Skinroller TikTok Landing Page Figma Design" class="w-full rounded-lg project-image">
+                                <p class="text-dream-text text-sm mt-2 text-center font-medium">Figma prototyp design</p>
+                            </div>
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/skinroller-final.jpg" alt="Skinroller TikTok Landing Page Final Version" class="w-full rounded-lg project-image">
+                                <p class="text-dream-text text-sm mt-2 text-center font-medium">Slutlig implementering</p>
+                            </div>
+                        </div>
+
+                        <!-- 访问链接 -->
+                        <div class="text-center">
+                            <a href="https://skinroller.co/sv/kampanjer/tiktok-kampanj/" target="_blank" 
+                               class="inline-flex items-center px-8 py-4 bg-dream-purple hover:bg-dream-blue text-white rounded-lg transition-all transform hover:scale-105 dream-border group">
+                                <span class="text-lg">Besök webbplatsen</span>
+                                <svg class="w-6 h-6 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Yifang项目 -->
+                    <div class="space-y-16">
+                        <!-- 项目标题和简介 -->
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Webbplats för Yifang Fruit Tea</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Jag ansvarade för att designa och utveckla en helt ny webbplats för Yifang Fruit Tea Stockholm, med målet att förbättra varumärkesidentiteten och locka fler kunder. Webbplatsen visar inte bara Yifangs dryckesmeny utan betonar också varumärkets historia och kärnvärden.
+                            </p>
+                        </div>
+
+                        <!-- Research部分 -->
+                        <div class="space-y-6 max-w-4xl mx-auto">
+                            <div class="max-w-3xl mx-auto">
+                                <h3 class="text-xl md:text-2xl font-bold text-dream-purple mb-4">Forskning och Analys</h3>
+                                <p class="text-dream-text text-lg leading-relaxed">
+                                    För att få en omfattande förståelse för Yifang Fruit Tea och deras målgrupp genomförde jag intervjuer med ägaren, anställda och flera kunder. Dessa diskussioner gav värdefulla insikter om varumärkets vision, kundpreferenser och förväntningar.
+                                </p>
+                            </div>
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/yifang-research.jpg" alt="Yifang Research Process" class="w-full rounded-lg project-image">
+                                <p class="text-dream-text text-sm mt-2 text-center font-medium">Forskningsprocess och analys</p>
+                            </div>
+                        </div>
+
+                        <!-- Prototype部分 -->
+                        <div class="space-y-6 max-w-4xl mx-auto">
+                            <div class="max-w-3xl mx-auto">
+                                <h3 class="text-xl md:text-2xl font-bold text-dream-purple mb-4">Prototyp Design</h3>
+                                <p class="text-dream-text text-lg leading-relaxed">
+                                    Baserat på forskningsresultaten skapade jag flera prototyper för att testa olika designlösningar och navigationsstrukturer. Detta hjälpte oss att optimera användarupplevelsen innan den slutliga implementeringen.
+                                </p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="glass-effect dream-border rounded-xl p-2">
+                                    <img src="./images/yifang-prototype1.jpg" alt="Yifang Website Prototype 1" class="w-full rounded-lg project-image">
+                                    <p class="text-dream-text text-sm mt-2 text-center font-medium">Första prototypversionen</p>
+                                </div>
+                                <div class="glass-effect dream-border rounded-xl p-2">
+                                    <img src="./images/yifang-prototype2.jpg" alt="Yifang Website Prototype 2" class="w-full rounded-lg project-image">
+                                    <p class="text-dream-text text-sm mt-2 text-center font-medium">Andra prototypversionen</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Final Project部分 -->
+                        <div class="space-y-6 max-w-4xl mx-auto">
+                            <div class="max-w-3xl mx-auto">
+                                <h3 class="text-xl md:text-2xl font-bold text-dream-purple mb-4">Slutligt Resultat</h3>
+                                <p class="text-dream-text text-lg leading-relaxed">
+                                    Den slutliga webbplatsen kombinerar modern design med användarvänlighet, vilket resulterar i en engagerande digital närvaro som effektivt förmedlar Yifangs varumärkesidentitet och produkterbjudanden.
+                                </p>
+                            </div>
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/yifang-final.jpg" alt="Yifang Final Website" class="w-full rounded-lg project-image">
+                                <p class="text-dream-text text-sm mt-2 text-center font-medium">Slutlig implementering</p>
+                            </div>
+                        </div>
+
+                        <!-- 访问链接 -->
+                        <div class="text-center">
+                            <a href="https://yifangteastockholmse.webnode.se/contact-us/" target="_blank" 
+                               class="inline-flex items-center px-8 py-4 bg-dream-purple hover:bg-dream-blue text-white rounded-lg transition-all transform hover:scale-105 dream-border group">
+                                <span class="text-lg">Besök webbplatsen</span>
+                                <svg class="w-6 h-6 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Skinroller皮肤分析问卷项目 -->
+                    <div class="space-y-16">
+                        <!-- 项目标题和简介 -->
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Hudanalysformulär för Skinroller</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Som en del av min praktik på Skinroller utvecklade jag ett interaktivt hudanalysformulär som hjälper kunder att hitta de mest lämpliga hudvårdsprodukterna baserat på deras specifika hudtillstånd och behov. Detta verktyg kombinerar avancerad produktrekommendationslogik med en användarvänlig gränssnitt.
+                            </p>
+                        </div>
+
+                        <!-- 项目展示图 -->
+                        <div class="max-w-5xl mx-auto">
+                            <div class="glass-effect dream-border rounded-xl p-2">
+                                <img src="./images/skinroller-quiz-full.jpg" alt="Skinroller Hudanalysformulär Översikt" class="w-full rounded-lg project-image">
+                                <p class="text-dream-text text-sm mt-2 text-center font-medium">Komplett översikt av hudanalysformuläret</p>
+                            </div>
+                        </div>
+
+                        <!-- 技术说明 -->
+                        <div class="max-w-3xl mx-auto">
+                            <h3 class="text-xl md:text-2xl font-bold text-dream-purple mb-4">Teknisk Implementation</h3>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Projektet utvecklades med modern webbteknik, inklusive HTML5, CSS3 och JavaScript. Särskild uppmärksamhet ägnades åt att skapa en responsiv design och sömlös användarupplevelse med animerade övergångar och interaktiva element. Formuläret innehåller åtta noggrant utvalda frågor som täcker viktiga aspekter som ålder, hudtyp, hudproblem och nuvarande hudvårdsrutiner, vilket resulterar i personliga produktrekommendationer från Skinrollers sortiment.
+                            </p>
+                        </div>
+
+                        <!-- 访问链接 -->
+                        <div class="text-center">
+                            <a href="https://skinroller.co/gallery.php?id=500" target="_blank" 
+                               class="inline-flex items-center px-8 py-4 bg-dream-purple hover:bg-dream-blue text-white rounded-lg transition-all transform hover:scale-105 dream-border group">
+                                <span class="text-lg">Besök hudanalysformuläret</span>
+                                <svg class="w-6 h-6 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] opacity-30">
+        <div class="absolute top-[10%] left-[5%] w-32 h-32 bg-dream-blue rounded-full blur-3xl"></div>
+        <div class="absolute top-[40%] right-[10%] w-40 h-40 bg-dream-pink rounded-full blur-3xl"></div>
+        <div class="absolute bottom-[20%] left-[15%] w-36 h-36 bg-dream-purple rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- 仅移动端显示的底部导航 -->
+    <div class="md:hidden">
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="mobile-menu flex-col items-center justify-center space-y-8">
+            <button id="closeMenu" class="absolute top-6 right-6 text-dream-text hover:text-dream-purple transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <a href="index.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Hem</a>
+            <a href="om-mig.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Om mig</a>
+            <a href="projekt.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Projekt</a>
+            <a href="kompetenser.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Kompetenser</a>
+            <a href="kontakt.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Kontakt</a>
+        </div>
+
+        <!-- 移动端底部导航 -->
+        <nav class="mobile-nav">
+            <div class="glass-effect dream-border rounded-xl">
+                <div class="flex justify-around items-center p-2">
+                    <a href="index.html" class="text-dream-text hover:text-dream-purple transition-colors p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </a>
+                    <a href="om-mig.html" class="text-dream-text hover:text-dream-purple transition-colors p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </a>
+                    <a href="projekt.html" class="text-dream-text hover:text-dream-purple transition-colors p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </a>
+                    <a href="kompetenser.html" class="text-dream-text hover:text-dream-purple transition-colors p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </a>
+                    <a href="kontakt.html" class="text-dream-text hover:text-dream-purple transition-colors p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html> 

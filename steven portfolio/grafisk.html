@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafisk Design - Steven Lu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dream: {
+                            brown: '#453C39',
+                            blue: '#B2DAE7',
+                            gray: '#CAC5BC',
+                            purple: '#6B75B4',
+                            pink: '#FDE2FC',
+                            text: '#2D2D2D'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #CAC5BC 0%, #97A3D6 50%, #FDE2FC 100%);
+            min-height: 100vh;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 
+                0 8px 32px 0 rgba(133, 122, 117, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+        .dream-border {
+            position: relative;
+        }
+        .dream-border::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #B2DAE7, #97A3D6, #FDE2FC);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        .project-image {
+            transition: transform 0.3s ease;
+        }
+        .project-image:hover {
+            transform: scale(1.02);
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- 导航栏 -->
+        <nav class="glass-effect dream-border rounded-xl mb-8 p-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-dream-text text-2xl font-bold tracking-wider">STEVEN LU</a>
+                <!-- 移动端汉堡菜单按钮 -->
+                <button id="menuButton" class="md:hidden text-dream-text hover:text-dream-purple transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="hidden md:flex space-x-12">
+                    <a href="index.html" class="text-dream-text hover:text-dream-purple transition-colors">Hem</a>
+                    <a href="om-mig.html" class="text-dream-text hover:text-dream-purple transition-colors">Om mig</a>
+                    <a href="projekt.html" class="text-dream-text hover:text-dream-purple transition-colors">Projekt</a>
+                    <a href="kompetenser.html" class="text-dream-text hover:text-dream-purple transition-colors">Kompetenser</a>
+                    <a href="kontakt.html" class="text-dream-text hover:text-dream-purple transition-colors">Kontakt</a>
+                </div>
+            </div>
+            <!-- 移动端菜单 -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-4">
+                <a href="index.html" class="block text-dream-text hover:text-dream-purple transition-colors">Hem</a>
+                <a href="om-mig.html" class="block text-dream-text hover:text-dream-purple transition-colors">Om mig</a>
+                <a href="projekt.html" class="block text-dream-text hover:text-dream-purple transition-colors">Projekt</a>
+                <a href="kompetenser.html" class="block text-dream-text hover:text-dream-purple transition-colors">Kompetenser</a>
+                <a href="kontakt.html" class="block text-dream-text hover:text-dream-purple transition-colors">Kontakt</a>
+            </div>
+        </nav>
+
+        <!-- 添加 JavaScript -->
+        <script>
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        </script>
+
+        <!-- 项目展示区域 -->
+        <section class="glass-effect dream-border rounded-2xl p-6 md:p-12 mb-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- 标题区域 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-dream-text mb-4">Grafisk Design</h1>
+                    <div class="w-24 h-1 bg-dream-purple mx-auto rounded-full mt-6"></div>
+                </div>
+
+                <!-- 项目内容区域 -->
+                <div class="space-y-20">
+                    <!-- YiFang Project -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">YiFang Projekt</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Jag har noggrant utformat en serie dryckesaffischer för YiFang, där modern designestetik elegant möter traditionell kinesisk tuschmålningsteknik. Varje affisch visar varumärkets unika charm och produktegenskaper.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Cocoa Latte Poster -->
+                            <div class="glass-effect dream-border rounded-xl p-4 project-card">
+                                <img src="./images/yifang-poster1.jpg" alt="YiFang Cocoa Latte Poster" class="w-full h-auto rounded-lg project-image mb-4">
+                                <h3 class="text-xl font-semibold text-dream-text mb-2">Kakao Latte Affisch</h3>
+                                <p class="text-dream-text">Designad i retrostil som visar den perfekta blandningen av kakao och mjölkte, framhäver produktens värme och fylliga smak.</p>
+                            </div>
+                            <!-- Peach Green Tea Poster -->
+                            <div class="glass-effect dream-border rounded-xl p-4 project-card">
+                                <img src="./images/yifang-poster2.jpg" alt="YiFang Peach Green Tea Poster" class="w-full h-auto rounded-lg project-image mb-4">
+                                <h3 class="text-xl font-semibold text-dream-text mb-2">Persika Grönt Te Affisch</h3>
+                                <p class="text-dream-text">Med en fräsch rosa ton och persikaillustrationer som framhäver dryckens fruktiga arom.</p>
+                            </div>
+                            <!-- Winter Special Poster -->
+                            <div class="glass-effect dream-border rounded-xl p-4 project-card">
+                                <img src="./images/yifang-poster3.jpg" alt="YiFang Winter Special Poster" class="w-full h-auto rounded-lg project-image mb-4">
+                                <h3 class="text-xl font-semibold text-dream-text mb-2">Vinterspecial Serie</h3>
+                                <p class="text-dream-text">Minimalistisk modern design som visar ingefärste-serien, kompletterad med ananasillustration för visuellt intresse.</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                            <!-- Opening Soon Poster -->
+                            <div class="glass-effect dream-border rounded-xl p-4 project-card">
+                                <img src="./images/yifang-poster4.jpg" alt="YiFang Opening Soon Poster" class="w-full h-auto rounded-lg project-image mb-4">
+                                <h3 class="text-xl font-semibold text-dream-text mb-2">Öppnar Snart Affisch</h3>
+                                <p class="text-dream-text">Kombinerar traditionell kinesisk tuschmålning av rosor med modern dryckespresentation.</p>
+                            </div>
+                            <!-- New Product Launch -->
+                            <div class="glass-effect dream-border rounded-xl p-4 project-card">
+                                <img src="./images/yifang-poster5.jpg" alt="YiFang New Product Launch" class="w-full h-auto rounded-lg project-image mb-4">
+                                <h3 class="text-xl font-semibold text-dream-text mb-2">Ny Produktlansering</h3>
+                                <p class="text-dream-text">Guldtema framhäver kokosmjölkseriens elegans med en enkel och sofistikerad layout.</p>
+                            </div>
+                            <!-- Fruit Tea Special -->
+                            <div class="glass-effect dream-border rounded-xl p-4 project-card">
+                                <img src="./images/yifang-poster6.jpg" alt="YiFang Fruit Tea Special" class="w-full h-auto rounded-lg project-image mb-4">
+                                <h3 class="text-xl font-semibold text-dream-text mb-2">Frukt Te Special</h3>
+                                <p class="text-dream-text">Tydlig presentation av ingredienserna framhäver fruktteets rika smak och färska ingredienser.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skinroller Project -->
+                    <div class="space-y-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h2 class="text-2xl md:text-3xl font-bold text-dream-purple mb-6">Nyhetsbrev och Bannerdesign för Skinroller</h2>
+                            <p class="text-dream-text text-lg leading-relaxed">
+                                Som en del av mitt arbete på Skinroller skapade jag flera nyhetsbrev riktade till både nya och befintliga kunder. Jag använde Figma och Canva för att designa visuellt tilltalande och konverteringsdrivna layouter. Fokus låg på tydlig informationshierarki, varumärkesanpassad design och effektiva CTA-element. Jag arbetade även med att skapa banners till både webbplatsen och e-postutskick, där varje banner designades för att kommunicera produktens nytta snabbt och visuellt. Genom A/B-testning och analys av användardata optimerade jag både innehåll och layout för att öka engagemang och klickfrekvens. Projektet gav mig djupare förståelse för visuell kommunikation, målgruppsanpassning och strategiskt innehållsskapande inom e-handel.
+                            </p>
+                        </div>
+                        
+                        <!-- Banner Section -->
+                        <div class="glass-effect dream-border rounded-xl p-4 project-card">
+                            <img src="./images/skinroller-banner.jpg" alt="Skinroller Banner Design" class="w-full h-auto rounded-lg project-image">
+                        </div>
+
+                        <!-- Newsletters Section -->
+                        <div class="grid grid-cols-1 gap-6 mt-6">
+                            <!-- Newsletter 1 -->
+                            <div class="glass-effect dream-border rounded-xl p-2 project-card">
+                                <img src="./images/skinroller-newsletter1.jpg" alt="Skinroller Newsletter Design 1" class="w-full h-auto rounded-lg project-image object-contain mx-auto" style="max-width: 400px;">
+                            </div>
+                            <!-- Newsletter 2 -->
+                            <div class="glass-effect dream-border rounded-xl p-2 project-card">
+                                <img src="./images/skinroller-newsletter2.jpg" alt="Skinroller Newsletter Design 2" class="w-full h-auto rounded-lg project-image object-contain mx-auto" style="max-width: 400px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] opacity-30">
+        <div class="absolute top-[10%] left-[5%] w-32 h-32 bg-dream-blue rounded-full blur-3xl"></div>
+        <div class="absolute top-[40%] right-[10%] w-40 h-40 bg-dream-pink rounded-full blur-3xl"></div>
+        <div class="absolute bottom-[20%] left-[15%] w-36 h-36 bg-dream-purple rounded-full blur-3xl"></div>
+    </div>
+</body>
+</html> 

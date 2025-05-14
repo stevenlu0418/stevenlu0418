@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - Steven Lu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dream: {
+                            brown: '#453C39',
+                            blue: '#B2DAE7',
+                            gray: '#CAC5BC',
+                            purple: '#6B75B4',
+                            pink: '#FDE2FC',
+                            text: '#2D2D2D'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #CAC5BC 0%, #97A3D6 50%, #FDE2FC 100%);
+            min-height: 100vh;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 
+                0 8px 32px 0 rgba(133, 122, 117, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+        .dream-border {
+            position: relative;
+        }
+        .dream-border::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #B2DAE7, #97A3D6, #FDE2FC);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @media (max-width: 767px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-card {
+            transition: transform 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+        /* 添加移动端菜单样式 */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(202, 197, 188, 0.95) 0%, rgba(151, 163, 214, 0.95) 50%, rgba(253, 226, 252, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 50;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            .menu-button {
+                display: block;
+            }
+            /* 移动端导航样式 */
+            .nav-container {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-button {
+                display: none;
+            }
+            /* 桌面端导航样式 */
+            .nav-brand {
+                width: 25%;
+            }
+            .nav-links {
+                width: 75%;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeButton = document.getElementById('closeMenu');
+
+            menuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+
+            closeButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+    </script>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- 导航栏 -->
+        <nav class="glass-effect dream-border rounded-xl mb-8 p-4">
+            <div class="flex justify-between items-center w-full nav-container">
+                <a href="index.html" class="text-dream-text text-2xl font-bold tracking-wider nav-brand">STEVEN LU</a>
+                <!-- 桌面端菜单 -->
+                <div class="desktop-menu hidden md:flex space-x-12 justify-end nav-links">
+                    <a href="index.html" class="text-dream-text hover:text-dream-purple transition-colors">Hem</a>
+                    <a href="om-mig.html" class="text-dream-text hover:text-dream-purple transition-colors">Om mig</a>
+                    <a href="projekt.html" class="text-dream-text hover:text-dream-purple transition-colors">Projekt</a>
+                    <a href="kompetenser.html" class="text-dream-text hover:text-dream-purple transition-colors">Kompetenser</a>
+                    <a href="kontakt.html" class="text-dream-purple transition-colors">Kontakt</a>
+                </div>
+                <!-- 移动端菜单按钮 -->
+                <button id="menuButton" class="menu-button md:hidden text-dream-text hover:text-dream-purple transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="mobile-menu flex-col items-center justify-center space-y-8">
+            <button id="closeMenu" class="absolute top-6 right-6 text-dream-text hover:text-dream-purple transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <a href="index.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Hem</a>
+            <a href="om-mig.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Om mig</a>
+            <a href="projekt.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Projekt</a>
+            <a href="kompetenser.html" class="text-dream-text hover:text-dream-purple transition-colors text-2xl">Kompetenser</a>
+            <a href="kontakt.html" class="text-dream-purple transition-colors text-2xl">Kontakt</a>
+        </div>
+
+        <!-- 联系页面主要内容 -->
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-effect dream-border rounded-2xl p-8 md:p-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-dream-text mb-12 text-center">Kontakta Mig</h1>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 联系卡片 -->
+                    <div class="contact-card glass-effect dream-border rounded-xl p-6 flex items-center space-x-6">
+                        <div class="w-12 h-12 rounded-full glass-effect dream-border flex items-center justify-center">
+                            <svg class="w-6 h-6 text-dream-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-dream-text font-medium mb-1">E-post</h3>
+                            <a href="mailto:Stevenlu0418@gmail.com" class="text-dream-purple hover:text-dream-blue transition-colors">Stevenlu0418@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card glass-effect dream-border rounded-xl p-6 flex items-center space-x-6">
+                        <div class="w-12 h-12 rounded-full glass-effect dream-border flex items-center justify-center">
+                            <svg class="w-6 h-6 text-dream-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-dream-text font-medium mb-1">Telefon</h3>
+                            <a href="tel:0737062097" class="text-dream-purple hover:text-dream-blue transition-colors">0737062097</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card glass-effect dream-border rounded-xl p-6 flex items-center space-x-6">
+                        <div class="w-12 h-12 rounded-full glass-effect dream-border flex items-center justify-center">
+                            <svg class="w-6 h-6 text-dream-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-dream-text font-medium mb-1">Plats</h3>
+                            <p class="text-dream-purple">Stockholm, Sweden</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card glass-effect dream-border rounded-xl p-6 flex items-center space-x-6">
+                        <div class="w-12 h-12 rounded-full glass-effect dream-border flex items-center justify-center">
+                            <svg class="w-6 h-6 text-dream-text" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-dream-text font-medium mb-1">LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/steven-lu-855b31241" target="_blank" class="text-dream-purple hover:text-dream-blue transition-colors">Steven Lu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] opacity-30">
+        <div class="absolute top-[10%] left-[5%] w-32 h-32 bg-dream-blue rounded-full blur-3xl"></div>
+        <div class="absolute top-[40%] right-[10%] w-40 h-40 bg-dream-pink rounded-full blur-3xl"></div>
+        <div class="absolute bottom-[20%] left-[15%] w-36 h-36 bg-dream-purple rounded-full blur-3xl"></div>
+    </div>
+</body>
+</html> 
